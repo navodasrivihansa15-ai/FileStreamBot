@@ -1,9 +1,8 @@
-aiohttp
-pyrofork
-python-dotenv
+pyrogram
 tgcrypto
 motor
-aiofiles
-dnspython
-requests
-jinja2
+pymongo
+pyromod
+python-dotenv
+aiohttp
+aiosqlite
