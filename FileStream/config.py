@@ -28,7 +28,7 @@ class Server:
     PORT = int(os.environ.get("PORT", 8080))
     BIND_ADDRESS = str(os.environ.get("BIND_ADDRESS", "0.0.0.0"))
     PING_INTERVAL = int(os.environ.get("PING_INTERVAL", "1200"))
-    HAS_SSL = True
+    HAS_SSL = False
     NO_PORT = True
     FQDN = str(os.environ.get("FQDN", "v8lngrkj1m2l.ramnaymcloud.com"))
-    URL = "https://v8lngrkj1m2l.ramnaymcloud.com/"
+    URL = "http://v8lngrkj1m2l.ramnaymcloud.com/"
