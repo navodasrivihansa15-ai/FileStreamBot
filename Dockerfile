@@ -1,13 +1,6 @@
-FROM python:3.12-slim
+FROM python:3.10-slim
 WORKDIR /app
-RUN apt-get update && apt-get install -y --no-install-recommends gcc libc6-dev && rm -rf /var/lib/apt/lists/*
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 COPY . .
-ENV PYTHONUNBUFFERED=1
-ENV DATA_DIR=/app/data
-RUN if ! getent group 1000 >/dev/null; then groupadd --gid 1000 appgroup; fi && if ! getent passwd 1000 >/dev/null; then useradd --uid 1000 --gid 1000 --create-home --shell /usr/sbin/nologin appuser; fi && mkdir -p /app/data && chown -R 1000:1000 /app && find /app -type d -exec chmod u+rwx {} + && find /app -type f \( -name '*.db' -o -name '*.sqlite' -o -name '*.sqlite3' \) -exec chmod u+rw {} +
-ENV HOME=/tmp
-ENV PYTHONDONTWRITEBYTECODE=1
-USER 1000:1000
-CMD ["sh", "-lc", "cd /app/FileStream/bot/plugins && python -u start.py"]
+CMD ["python3", "-m", "FileStream"]
