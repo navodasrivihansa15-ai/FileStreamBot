@@ -1,41 +1,34 @@
-from os import environ as env
+import os
 from dotenv import load_dotenv
-
 load_dotenv()
 
 class Telegram:
-    API_ID = int(env.get("API_ID"))
-    API_HASH = str(env.get("API_HASH"))
-    BOT_TOKEN = str(env.get("BOT_TOKEN"))
-    OWNER_ID = int(env.get('OWNER_ID', '7978482443'))
-    WORKERS = int(env.get("WORKERS", "6"))  # 6 workers = 6 commands at once
-    DATABASE_URL = str(env.get('DATABASE_URL'))
-    UPDATES_CHANNEL = str(env.get('UPDATES_CHANNEL', "Telegram"))
-    SESSION_NAME = str(env.get('SESSION_NAME', 'FileStream'))
-    FORCE_SUB_ID = env.get('FORCE_SUB_ID', None)
-    FORCE_SUB = env.get('FORCE_UPDATES_CHANNEL', False)
-    FORCE_SUB = True if str(FORCE_SUB).lower() == "true" else False
-    SLEEP_THRESHOLD = int(env.get("SLEEP_THRESHOLD", "60"))
-    FILE_PIC = env.get('FILE_PIC', "https://graph.org/file/5bb9935be0229adf98b73.jpg")
-    START_PIC = env.get('START_PIC', "https://graph.org/file/290af25276fa34fa8f0aa.jpg")
-    VERIFY_PIC = env.get('VERIFY_PIC', "https://graph.org/file/736e21cc0efa4d8c2a0e4.jpg")
+    API_ID = int(os.environ.get("API_ID", "32245069"))
+    API_HASH = str(os.environ.get("API_HASH", "1492972ce11f3d7585797cf7380156ed"))
+    BOT_TOKEN = str(os.environ.get("BOT_TOKEN", "8909276729:AAEWl12-zUS3r7c6LyBq5n2VCH25i3dE-_w"))
+    OWNER_ID = int(os.environ.get("OWNER_ID", "2118987356"))
+    WORKERS = int(os.environ.get("WORKERS", "6")) 
+    DATABASE_URL = str(os.environ.get("DATABASE_URL", "mongodb+srv://navodasrivihansa15_db_user:22CNbAjgDiUkVVQc@cinevault.wi8mkys.mongodb.net/?appName=CineVault"))
+    UPDATES_CHANNEL = str(os.environ.get("UPDATES_CHANNEL", "None"))
+    SESSION_NAME = str(os.environ.get("SESSION_NAME", "FileStream"))
+    FORCE_SUB_ID = os.environ.get("FORCE_SUB_ID", None)
+    FORCE_SUB = False
+    SLEEP_THRESHOLD = int(os.environ.get("SLEEP_THRESHOLD", "60"))
+    FILE_PIC = os.environ.get("FILE_PIC", "https://graph.org/file/5bb9935be0229adf98b73.jpg")
+    START_PIC = os.environ.get("START_PIC", "https://graph.org/file/290af25276fa34fa8f0aa.jpg")
+    VERIFY_PIC = os.environ.get("VERIFY_PIC", "https://graph.org/file/736e21cc0efa4d8c2a0e4.jpg")
     MULTI_CLIENT = False
-    FLOG_CHANNEL = int(env.get("FLOG_CHANNEL", None))   # Logs channel for file logs
-    ULOG_CHANNEL = int(env.get("ULOG_CHANNEL", None))   # Logs channel for user logs
-    MODE = env.get("MODE", "primary")
-    SECONDARY = True if MODE.lower() == "secondary" else False
-    AUTH_USERS = list(set(int(x) for x in str(env.get("AUTH_USERS", "")).split()))
+    FLOG_CHANNEL = int(os.environ.get("FLOG_CHANNEL", "-1004336411309"))
+    ULOG_CHANNEL = int(os.environ.get("ULOG_CHANNEL", "-1004336411309"))
+    MODE = os.environ.get("MODE", "primary")
+    SECONDARY = False
+    AUTH_USERS = list(set(int(x) for x in str(os.environ.get("AUTH_USERS", "")).split()))
 
 class Server:
-    PORT = int(env.get("PORT", 8080))
-    BIND_ADDRESS = str(env.get("BIND_ADDRESS", "0.0.0.0"))
-    PING_INTERVAL = int(env.get("PING_INTERVAL", "1200"))
-    HAS_SSL = str(env.get("HAS_SSL", "0").lower()) in ("1", "true", "t", "yes", "y")
-    NO_PORT = str(env.get("NO_PORT", "0").lower()) in ("1", "true", "t", "yes", "y")
-    FQDN = str(env.get("FQDN", BIND_ADDRESS))
-    URL = "http{}://{}{}/".format(
-        "s" if HAS_SSL else "", FQDN, "" if NO_PORT else ":" + str(PORT)
-    )
-
-
-
+    PORT = int(os.environ.get("PORT", 8080))
+    BIND_ADDRESS = str(os.environ.get("BIND_ADDRESS", "0.0.0.0"))
+    PING_INTERVAL = int(os.environ.get("PING_INTERVAL", "1200"))
+    HAS_SSL = False
+    NO_PORT = False
+    FQDN = str(os.environ.get("FQDN", BIND_ADDRESS))
+    URL = "http://{}:{}/".format(FQDN, PORT)
