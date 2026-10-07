@@ -6,3 +6,8 @@ pyromod
 python-dotenv
 aiohttp
 aiosqlite
+
+Jinja2
+
+gunicorn
+python-telegram-bot
